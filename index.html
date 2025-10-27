@@ -1,130 +1,149 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width,initial-scale=1.0" />
-<title>TableTop</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Welcome</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 <style>
 :root {
-  --bg: #0b0b0b;
-  --text: #f2f2f2;
-  --accent: #9aa0a6;
-  --max: 1400px;
+  --bg: #0d0d0d;
+  --text: #f5f5f5;
+  --accent1: #6c63ff;
+  --accent2: #00e0ff;
+  --max: 1300px;
 }
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 body{
+  font-family:'Poppins',sans-serif;
   background:var(--bg);
   color:var(--text);
-  font-family:'Inter',sans-serif;
   overflow-x:hidden;
+  scroll-behavior:smooth;
 }
-section{width:100%;max-width:var(--max);margin:0 auto;padding:10vh 5vw;}
-h1,h2{font-weight:400;letter-spacing:.02em}
-h1{font-size:clamp(2.5rem,6vw,6rem);margin-bottom:1rem}
-h2{font-size:clamp(1.5rem,4vw,3rem);color:var(--accent);margin-bottom:2rem}
-p{font-size:clamp(1rem,1.6vw,1.25rem);line-height:1.8;color:#ccc;max-width:800px;margin-bottom:2.5rem}
-button,a.cta{
-  background:none;border:1px solid var(--accent);
-  color:var(--text);padding:1rem 2rem;
-  border-radius:40px;font-size:1rem;
-  text-decoration:none;letter-spacing:.05em;
+section{width:100%;max-width:var(--max);margin:0 auto;padding:10vh 6vw;position:relative;}
+h1,h2,h3{font-weight:600;letter-spacing:-.02em}
+h1{font-size:clamp(2.5rem,6vw,5rem);}
+h2{font-size:clamp(1.8rem,4vw,3rem);margin-bottom:1rem;}
+p{font-size:clamp(1rem,1.6vw,1.25rem);line-height:1.8;color:#ccc;max-width:780px;}
+a.cta{
+  display:inline-block;
+  margin-top:2rem;
+  padding:1rem 2rem;
+  border-radius:40px;
+  background:linear-gradient(135deg,var(--accent1),var(--accent2));
+  color:#fff;text-decoration:none;font-weight:600;
+  box-shadow:0 8px 30px rgba(108,99,255,.4);
   transition:all .4s ease;
 }
-button:hover,a.cta:hover{background:var(--accent);color:#000}
+a.cta:hover{transform:translateY(-5px);box-shadow:0 15px 40px rgba(108,99,255,.6);}
 .hero{
-  min-height:100vh;
-  display:flex;flex-direction:column;justify-content:center;align-items:center;
-  text-align:center;
-  background:radial-gradient(circle at 50% 0%,#1b1b1b 0%,#000 100%);
-  position:relative;overflow:hidden;
+  min-height:100vh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;
+  background:linear-gradient(135deg,#121212,#1e1e1e);
+  overflow:hidden;position:relative;
 }
 .hero::before{
-  content:"";
-  position:absolute;
-  width:80vw;height:80vw;
-  top:-20vw;left:10vw;
-  background:radial-gradient(circle,#222 0%,transparent 70%);
-  filter:blur(120px);opacity:.6;
+  content:"";position:absolute;inset:0;
+  background:radial-gradient(circle at 30% 50%,rgba(108,99,255,.25),transparent 60%),
+              radial-gradient(circle at 70% 70%,rgba(0,224,255,.25),transparent 60%);
+  filter:blur(100px);
 }
-.hero img{
-  width:160px;border-radius:32px;
-  box-shadow:0 20px 60px rgba(0,0,0,.6);
-  margin-bottom:2rem;z-index:1;
-}
-.hero h1{z-index:1}
-.hero p{color:#aaa;z-index:1}
+.hero-content{position:relative;z-index:2;}
+.hero h1 span{background:linear-gradient(90deg,var(--accent1),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
 .scroll{
-  animation:fadeUp 1s ease forwards;
-  opacity:0;
+  opacity:0;transform:translateY(40px);
+  transition:opacity .8s ease,transform .8s ease;
 }
-@keyframes fadeUp{
-  from{opacity:0;transform:translateY(40px);}
-  to{opacity:1;transform:translateY(0);}
+.scroll.visible{opacity:1;transform:translateY(0);}
+.showcase{
+  display:flex;flex-wrap:wrap;justify-content:center;gap:4vw;margin-top:5vh;
 }
-.gallery{
-  display:flex;flex-wrap:wrap;gap:2vw;justify-content:center;
-}
-.gallery img{
-  width:clamp(260px,30%,400px);
+.showcase img{
+  width:clamp(260px,30%,380px);
   border-radius:24px;
-  box-shadow:0 10px 40px rgba(0,0,0,.4);
+  box-shadow:0 10px 40px rgba(0,0,0,.5);
   transition:transform .6s ease;
 }
-.gallery img:hover{transform:scale(1.03);}
-footer{
-  padding:10vh 5vw;text-align:center;
-  color:#777;font-size:.9rem;
-  border-top:1px solid #222;
+.showcase img:hover{transform:scale(1.05);}
+.features{
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+  gap:60px;margin-top:6vh;
 }
-footer a{color:#999;text-decoration:none}
-footer a:hover{color:#fff}
+.feature{
+  background:rgba(255,255,255,0.04);
+  border:1px solid rgba(255,255,255,0.06);
+  padding:2.5rem;border-radius:24px;
+  transition:transform .4s ease,box-shadow .4s ease;
+}
+.feature:hover{transform:translateY(-6px);box-shadow:0 10px 30px rgba(0,0,0,.3);}
+.feature h3{color:var(--accent2);margin-bottom:.8rem;}
+footer{
+  text-align:center;padding:10vh 5vw;font-size:.9rem;color:#999;border-top:1px solid #222;
+}
+footer a{color:#aaa;text-decoration:none;margin:0 .5rem;}
+footer a:hover{color:#fff;}
 </style>
 </head>
 <body>
 
 <!-- HERO -->
 <section class="hero">
-  <img src="icon.png" alt="TableTop App Icon">
-  <h1>TableTop</h1>
-  <p>Precision. Simplicity. Style.</p>
-  <a href="#" class="cta">Coming Soon</a>
-</section>
-
-<!-- SHOWCASE -->
-<section class="scroll">
-  <h2>Elegance in Motion</h2>
-  <p>Every interaction refined to perfection. Built to feel effortless on any device — just pure function and form in harmony.</p>
-  <div class="gallery">
-    <img src="screenshot1.png" alt="App Screenshot 1">
-    <img src="screenshot2.png" alt="App Screenshot 2">
-    <img src="screenshot3.png" alt="App Screenshot 3">
+  <div class="hero-content">
+    <h1>The Future <span>Feels Beautiful</span></h1>
+    <p>Clean design. Fluid motion. Built to inspire curiosity and delight on every screen.</p>
+    <a href="#" class="cta">Explore</a>
   </div>
 </section>
 
-<!-- ABOUT -->
+<!-- GALLERY -->
 <section class="scroll">
-  <h2>Designed Without Compromise</h2>
-  <p>From its fluid animations to its balanced geometry, TableTop embodies a philosophy of quiet confidence — technology that stays out of your way while amplifying what matters.</p>
+  <h2>Visual Storytelling</h2>
+  <p>Modern experiences aren’t read, they’re felt. The way color moves, light fades, and typography breathes — that’s where emotion lives.</p>
+  <div class="showcase">
+    <img src="screenshot1.png" alt="Gallery 1">
+    <img src="screenshot2.png" alt="Gallery 2">
+    <img src="screenshot3.png" alt="Gallery 3">
+  </div>
+</section>
+
+<!-- FEATURES -->
+<section class="scroll">
+  <h2>What Makes It Work</h2>
+  <div class="features">
+    <div class="feature">
+      <h3>Immersive Motion</h3>
+      <p>Every element reacts naturally — gentle parallax, soft fades, and just enough depth to feel alive.</p>
+    </div>
+    <div class="feature">
+      <h3>Human Simplicity</h3>
+      <p>No clutter. No noise. Just intuitive flow that adapts to the way people actually move and think.</p>
+    </div>
+    <div class="feature">
+      <h3>Universal Beauty</h3>
+      <p>Fully responsive. Pixel-perfect on every device — from 4-inch phones to ultra-wide displays.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="scroll" style="text-align:center;">
+  <h2>Ready to Create?</h2>
+  <p>Design isn't about features — it's about feeling. This site was built to show what happens when detail meets emotion.</p>
+  <a href="#" class="cta">Get Started</a>
 </section>
 
 <footer>
-  © 2025 Charlie Grant. All rights reserved.<br>
-  <a href="https://charliegrant.github.io/tabletop-privacy/">Privacy Policy</a> ·
-  <a href="https://charliegrant.github.io/tabletop-privacy/support.html">Support</a>
+  © 2025 Charlie Grant · <a href="#">Privacy</a> · <a href="#">Support</a>
 </footer>
 
 <script>
-/* simple scroll fade-in */
-const items=document.querySelectorAll('.scroll');
-const obs=new IntersectionObserver((entries)=>{
+// scroll reveal
+const observer=new IntersectionObserver((entries)=>{
   entries.forEach(e=>{
-    if(e.isIntersecting){e.target.style.animation='fadeUp 1.2s ease forwards';}
+    if(e.isIntersecting){e.target.classList.add('visible');}
   });
 },{threshold:.2});
-items.forEach(i=>obs.observe(i));
+document.querySelectorAll('.scroll').forEach(s=>observer.observe(s));
 </script>
 
 </body>
