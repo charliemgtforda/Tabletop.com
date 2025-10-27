@@ -1,230 +1,131 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>TableTop – Score Baseball the Smart Way</title>
-<link rel="apple-touch-icon" href="icon.png">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1.0" />
+<title>TableTop</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
 <style>
-  :root {
-    --accent: #0a84ff;
-    --bg-light: #fdfdfd;
-    --bg-dark: #0c0c0c;
-    --text-light: #111;
-    --text-dark: #f9f9f9;
-    --radius: 22px;
-    --shadow: 0 20px 60px rgba(0,0,0,0.15);
-  }
-  @media (prefers-color-scheme: dark) {
-    :root {
-      --bg-light: #0c0c0c;
-      --text-light: #f9f9f9;
-    }
-  }
-
-  * {
-    margin: 0; padding: 0; box-sizing: border-box;
-    scroll-behavior: smooth;
-    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", Roboto, Helvetica, Arial, sans-serif;
-  }
-
-  body {
-    background: var(--bg-light);
-    color: var(--text-light);
-    overflow-x: hidden;
-  }
-
-  /* --- Hero Section --- */
-  header {
-    text-align: center;
-    padding: 140px 20px 120px;
-    position: relative;
-    overflow: hidden;
-    background: radial-gradient(circle at top, #f9f9f9, #e9f0ff);
-  }
-  @media (prefers-color-scheme: dark) {
-    header { background: radial-gradient(circle at top, #101010, #0a0a0a); }
-  }
-
-  /* Floating gradient orb */
-  header::before {
-    content: "";
-    position: absolute;
-    top: -100px; left: 50%;
-    width: 600px; height: 600px;
-    background: radial-gradient(circle, rgba(10,132,255,0.3), transparent 70%);
-    transform: translateX(-50%);
-    filter: blur(100px);
-    z-index: 0;
-  }
-
-  header img {
-    width: 120px;
-    border-radius: 28px;
-    z-index: 2;
-    position: relative;
-    box-shadow: 0 10px 40px rgba(0,0,0,0.15);
-  }
-  h1 {
-    font-size: 68px;
-    font-weight: 800;
-    margin-top: 30px;
-    letter-spacing: -1px;
-    z-index: 2;
-    position: relative;
-  }
-  p.subtitle {
-    font-size: 22px;
-    color: #666;
-    margin-top: 12px;
-    z-index: 2;
-    position: relative;
-  }
-  .cta {
-    display: inline-block;
-    margin-top: 40px;
-    padding: 16px 38px;
-    font-size: 19px;
-    font-weight: 600;
-    color: white;
-    text-decoration: none;
-    background: linear-gradient(120deg, #007aff, #00c6ff);
-    border-radius: 14px;
-    box-shadow: 0 10px 25px rgba(0,122,255,0.35);
-    transition: all 0.3s ease;
-    z-index: 2;
-    position: relative;
-  }
-  .cta:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 18px 40px rgba(0,122,255,0.4);
-  }
-
-  /* --- Showcase Section --- */
-  section {
-    max-width: 1100px;
-    margin: 0 auto;
-    padding: 120px 20px;
-    text-align: center;
-  }
-
-  section h2 {
-    font-size: 46px;
-    margin-bottom: 20px;
-  }
-  section p {
-    font-size: 18px;
-    color: #555;
-    max-width: 700px;
-    margin: 0 auto 40px;
-  }
-
-  .screenshot {
-    width: 300px;
-    border-radius: 38px;
-    box-shadow: var(--shadow);
-    transition: transform 0.4s ease, box-shadow 0.4s ease;
-  }
-  .screenshot:hover {
-    transform: scale(1.04);
-    box-shadow: 0 30px 80px rgba(0,0,0,0.2);
-  }
-
-  /* --- Feature Cards --- */
-  .features {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 60px;
-    margin-top: 80px;
-  }
-  .feature {
-    background: rgba(255,255,255,0.75);
-    backdrop-filter: blur(15px);
-    border-radius: 24px;
-    padding: 40px;
-    text-align: left;
-    box-shadow: var(--shadow);
-    transition: transform 0.3s ease;
-  }
-  .feature:hover {
-    transform: translateY(-5px);
-  }
-  .feature h3 {
-    color: #007aff;
-    font-size: 22px;
-    margin-bottom: 10px;
-  }
-  .feature p {
-    color: #444;
-  }
-
-  /* --- Footer --- */
-  footer {
-    text-align: center;
-    padding: 80px 20px;
-    font-size: 15px;
-    color: #666;
-    background: linear-gradient(to top, #f5f7fa, #fff);
-  }
-  footer a {
-    color: #007aff;
-    text-decoration: none;
-  }
-  footer a:hover {
-    text-decoration: underline;
-  }
-  @media (prefers-color-scheme: dark) {
-    footer { background: linear-gradient(to top, #111, #000); color: #aaa; }
-  }
+:root {
+  --bg: #0b0b0b;
+  --text: #f2f2f2;
+  --accent: #9aa0a6;
+  --max: 1400px;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{
+  background:var(--bg);
+  color:var(--text);
+  font-family:'Inter',sans-serif;
+  overflow-x:hidden;
+}
+section{width:100%;max-width:var(--max);margin:0 auto;padding:10vh 5vw;}
+h1,h2{font-weight:400;letter-spacing:.02em}
+h1{font-size:clamp(2.5rem,6vw,6rem);margin-bottom:1rem}
+h2{font-size:clamp(1.5rem,4vw,3rem);color:var(--accent);margin-bottom:2rem}
+p{font-size:clamp(1rem,1.6vw,1.25rem);line-height:1.8;color:#ccc;max-width:800px;margin-bottom:2.5rem}
+button,a.cta{
+  background:none;border:1px solid var(--accent);
+  color:var(--text);padding:1rem 2rem;
+  border-radius:40px;font-size:1rem;
+  text-decoration:none;letter-spacing:.05em;
+  transition:all .4s ease;
+}
+button:hover,a.cta:hover{background:var(--accent);color:#000}
+.hero{
+  min-height:100vh;
+  display:flex;flex-direction:column;justify-content:center;align-items:center;
+  text-align:center;
+  background:radial-gradient(circle at 50% 0%,#1b1b1b 0%,#000 100%);
+  position:relative;overflow:hidden;
+}
+.hero::before{
+  content:"";
+  position:absolute;
+  width:80vw;height:80vw;
+  top:-20vw;left:10vw;
+  background:radial-gradient(circle,#222 0%,transparent 70%);
+  filter:blur(120px);opacity:.6;
+}
+.hero img{
+  width:160px;border-radius:32px;
+  box-shadow:0 20px 60px rgba(0,0,0,.6);
+  margin-bottom:2rem;z-index:1;
+}
+.hero h1{z-index:1}
+.hero p{color:#aaa;z-index:1}
+.scroll{
+  animation:fadeUp 1s ease forwards;
+  opacity:0;
+}
+@keyframes fadeUp{
+  from{opacity:0;transform:translateY(40px);}
+  to{opacity:1;transform:translateY(0);}
+}
+.gallery{
+  display:flex;flex-wrap:wrap;gap:2vw;justify-content:center;
+}
+.gallery img{
+  width:clamp(260px,30%,400px);
+  border-radius:24px;
+  box-shadow:0 10px 40px rgba(0,0,0,.4);
+  transition:transform .6s ease;
+}
+.gallery img:hover{transform:scale(1.03);}
+footer{
+  padding:10vh 5vw;text-align:center;
+  color:#777;font-size:.9rem;
+  border-top:1px solid #222;
+}
+footer a{color:#999;text-decoration:none}
+footer a:hover{color:#fff}
 </style>
 </head>
 <body>
 
-<header>
+<!-- HERO -->
+<section class="hero">
   <img src="icon.png" alt="TableTop App Icon">
   <h1>TableTop</h1>
-  <p class="subtitle">The Premium Baseball Score Experience ⚾</p>
-
-  <!-- Placeholder until App Store approval -->
-  <a href="#" class="cta">Coming Soon to the App Store</a>
-</header>
-
-<section>
-  <h2>Score Like a Pro</h2>
-  <p>TableTop isn’t just a scorekeeper — it’s a statement. Every tap feels responsive, every stat precise. Designed for players who appreciate detail and beauty in every inning.</p>
-  <img src="screenshot1.png" class="screenshot" alt="Game Screen">
+  <p>Precision. Simplicity. Style.</p>
+  <a href="#" class="cta">Coming Soon</a>
 </section>
 
-<section>
-  <h2>Luxury in Every Detail</h2>
-  <p>We blended the precision of a baseball scorecard with the design language of Apple — refined, tactile, and effortless.</p>
-  <div class="features">
-    <div class="feature">
-      <h3>Immersive Design</h3>
-      <p>Clean SwiftUI visuals, natural motion, and haptic precision make scoring feel alive.</p>
-    </div>
-    <div class="feature">
-      <h3>Personalized Experience</h3>
-      <p>Custom innings, team names, and seamless game logic. TableTop adapts to your pace.</p>
-    </div>
-    <div class="feature">
-      <h3>Pure Privacy</h3>
-      <p>No accounts, no ads, no tracking. Everything stays on your device — by design.</p>
-    </div>
+<!-- SHOWCASE -->
+<section class="scroll">
+  <h2>Elegance in Motion</h2>
+  <p>Every interaction refined to perfection. Built to feel effortless on any device — just pure function and form in harmony.</p>
+  <div class="gallery">
+    <img src="screenshot1.png" alt="App Screenshot 1">
+    <img src="screenshot2.png" alt="App Screenshot 2">
+    <img src="screenshot3.png" alt="App Screenshot 3">
   </div>
 </section>
 
-<section>
-  <h2>Play. Feel. Share.</h2>
-  <p>When the game ends, TableTop turns your stats into an elegant shareable scorecard — perfect for memories, rivals, and friendly bragging rights.</p>
-  <img src="screenshot2.png" class="screenshot" alt="End Screen">
+<!-- ABOUT -->
+<section class="scroll">
+  <h2>Designed Without Compromise</h2>
+  <p>From its fluid animations to its balanced geometry, TableTop embodies a philosophy of quiet confidence — technology that stays out of your way while amplifying what matters.</p>
 </section>
 
 <footer>
-  <p>© 2025 Charlie Grant. All rights reserved.<br>
-  <a href="https://charliegrant.github.io/tabletop-privacy/">Privacy Policy</a> |
-  <a href="https://charliegrant.github.io/tabletop-privacy/support.html">Support</a></p>
+  © 2025 Charlie Grant. All rights reserved.<br>
+  <a href="https://charliegrant.github.io/tabletop-privacy/">Privacy Policy</a> ·
+  <a href="https://charliegrant.github.io/tabletop-privacy/support.html">Support</a>
 </footer>
+
+<script>
+/* simple scroll fade-in */
+const items=document.querySelectorAll('.scroll');
+const obs=new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){e.target.style.animation='fadeUp 1.2s ease forwards';}
+  });
+},{threshold:.2});
+items.forEach(i=>obs.observe(i));
+</script>
 
 </body>
 </html>
